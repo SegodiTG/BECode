@@ -135,8 +135,12 @@ def point_calculation(ans):
                         point = int(rank[1]) + 3
                         temp = line.replace(rank[1], str(point))
                         teamPoints[count] = temp
-                if (score[2] + ",") in line and not found2:
-                    found2 = True
+                if score[2] == "FC":
+                    if score[2] in line and not found2:
+                        found2 = True
+                else:
+                     if (score[2] + ",") in line and not found2:
+                        found2 = True
                 if found1 and found2:
                     break
                 count += 1
@@ -169,29 +173,26 @@ def point_calculation(ans):
                         s = score[2] + ", " +  str(0) + " pts"
                         teamPoints.append(s)
         #For away win
-        else:
+        elif num1 < num2:
             count = 0
             found1 = False
             found2 = False
             for line in teamPoints:
-                if (score[0] + ",") in line and not found1:
-                    found = True
-                if (score[2] + ",") in line and not found2:
-                    found = True
-                    temp = line
-                    rank = line.split(" ")
-                    point = int(rank[1]) + 3
-                    temp = line.replace(rank[1], str(point))
-                    teamPoints[count] = temp
-            if not found1 and not found2:
                 if score[0] == "FC":
-                    s = score[0] + score[1] + ", " +  str(0) + " pts"
+                    if score[0] in line and not found2:
+                        found1 = True
+                else:
+                     if (score[0] + ",") in line and not found2:
+                        found1 = True
+                """  if not found1 and not found2:
+                if score[0] == "FC":
+                    s = score[0] +  " " + score[1] + ", " +  str(0) + " pts"
                     teamPoints.append(s)                    
                 else:
                     s = score[0] + ", " +  str(0) + " pts"
                     teamPoints.append(s)
                 if score[2] == "FC":
-                    s = score[2] + score[3] + ", " +  str(3) + " pts"
+                    s = score[2] +  " " + score[3] + ", " +  str(3) + " pts"
                     teamPoints.append(s)                    
                 else:
                     s = score[2] + ", " +  str(3) + " pts"
@@ -199,14 +200,61 @@ def point_calculation(ans):
             elif not found1 or not found2: 
                 if not found1:
                     if score[0] == "FC":
-                        s = score[0] + score[1] + ", " +  str(0) + " pts"
+                        s = score[0] +  " " + score[1] + ", " +  str(0) + " pts"
                         teamPoints.append(s)                    
                     else:
-                        s = score[0] + ", " +  str(3) + " pts"
+                        s = score[0] + ", " +  str(0) + " pts"
                         teamPoints.append(s)
                 if not found2:
                     if score[2] == "FC":
-                        s = score[2] + score[3] + ", " +  str(3) + " pts"
+                        s = score[2] +  " " + score[3] + ", " +  str(3) + " pts"
+                        teamPoints.append(s)                    
+                    else:
+                        s = score[2] + ", " +  str(3) + " pts"
+                        teamPoints.append(s)"""
+                if score[2] == "FC":
+                    if score[2] in line and not found2:
+                        found2 = True
+                        temp = line
+                        rank = line.split(" ")
+                        point = int(rank[2]) + 3
+                        temp = line.replace(rank[2], str(point))
+                        teamPoints[count] = temp
+                else:
+                    if (score[2] + ",") in line and not found2:
+                        found2 = True
+                        temp = line
+                        rank = line.split(" ")
+                        point = int(rank[1]) + 3
+                        temp = line.replace(rank[1], str(point))
+                        teamPoints[count] = temp
+                if found1 and found2:
+                    break
+                count += 1
+            if not found1 and not found2:
+                if score[0] == "FC":
+                    s = score[0] +  " " + score[1] + ", " +  str(0) + " pts"
+                    teamPoints.append(s)                    
+                else:
+                    s = score[0] + ", " +  str(0) + " pts"
+                    teamPoints.append(s)
+                if score[2] == "FC":
+                    s = score[2] +  " " + score[3] + ", " +  str(3) + " pts"
+                    teamPoints.append(s)                    
+                else:
+                    s = score[2] + ", " +  str(3) + " pts"
+                    teamPoints.append(s)
+            elif not found1 or not found2: 
+                if not found1:
+                    if score[0] == "FC":
+                        s = score[0] +  " " + score[1] + ", " +  str(0) + " pts"
+                        teamPoints.append(s)                    
+                    else:
+                        s = score[0] + ", " +  str(0) + " pts"
+                        teamPoints.append(s)
+                if not found2:
+                    if score[2] == "FC":
+                        s = score[2] +  " " + score[3] + ", " +  str(3) + " pts"
                         teamPoints.append(s)                    
                     else:
                         s = score[2] + ", " +  str(3) + " pts"
